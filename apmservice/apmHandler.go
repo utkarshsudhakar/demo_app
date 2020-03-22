@@ -39,7 +39,7 @@ func compareRelease(w http.ResponseWriter, r *http.Request) {
 	newRelease := r.URL.Query().Get("newRelease")
 	Hostname := r.URL.Query().Get("Hostname")
 	completeReport := r.URL.Query().Get("completeReport") // True/False
-	cc := r.URL.Query().Get("email")
+	//cc := r.URL.Query().Get("email")
 
 	oldReleaseData, oldBuildDataTask := utils.GetReleaseData(oldBuildNum, oldRelease, Hostname)
 	newReleaseData, newBuildDataTask := utils.GetReleaseData(newBuildNum, newRelease, Hostname)
@@ -49,7 +49,7 @@ func compareRelease(w http.ResponseWriter, r *http.Request) {
 		utils.RespondWithJSON("BuildNumber/Release not correct or not enough data ", w, r)
 
 	} else {
-		subject := fmt.Sprintf("Release Comparison Report for %s & %s", oldRelease, newRelease)
+		//subject := fmt.Sprintf("Release Comparison Report for %s & %s", oldRelease, newRelease)
 		p := fmt.Sprintf("<body style='background:white'><h3 style='background:#0790bd;color:#fff;padding:5px;text-align:center;border-radius:5px;'> Release Comparison for %s & %s </h3> <br/> <br/>", oldRelease, newRelease)
 
 		for ResourceName, v := range oldReleaseData {
@@ -128,7 +128,7 @@ func compareRelease(w http.ResponseWriter, r *http.Request) {
 		//fmt.Println(p)
 		conf := utils.ReadConfig()
 		p = p + "<b>Dashboard URL : </b>" + conf.DashboardURL
-		utils.SendMail(p, subject, cc)
+		//utils.SendMail(p, subject, cc)
 
 		//write to file
 		fileName := "../htmlReport/EDCPerformance_report_" + oldRelease + "vs" + newRelease + ".html"
@@ -155,7 +155,7 @@ func compareBuild(w http.ResponseWriter, r *http.Request) {
 	Release := r.URL.Query().Get("Release")
 	Hostname := r.URL.Query().Get("Hostname")             // "10.2.2"
 	completeReport := r.URL.Query().Get("completeReport") // True/False
-	cc := r.URL.Query().Get("email")
+	//cc := r.URL.Query().Get("email")
 
 	oldBuildData, oldBuildDataTask := utils.GetBuildData(oldBuildNum, Hostname)
 	newBuildData, newBuildDataTask := utils.GetBuildData(newBuildNum, Hostname)
@@ -166,7 +166,7 @@ func compareBuild(w http.ResponseWriter, r *http.Request) {
 
 	} else {
 
-		subject := fmt.Sprintf("Release : %s - Build Comparison Report for %s & %s", Release, oldBuildNum, newBuildNum)
+		//subject := fmt.Sprintf("Release : %s - Build Comparison Report for %s & %s", Release, oldBuildNum, newBuildNum)
 		p := fmt.Sprintf("<body style='background:white'><h3 style='background:#0790bd;color:#fff;padding:5px;text-align:center;border-radius:5px;'> Build Comparison for %s & %s </h3> <br/><b>Release: %s </b><br/> <br/>", oldBuildNum, newBuildNum, Release)
 
 		for ResourceName, v := range oldBuildData {
@@ -246,7 +246,7 @@ func compareBuild(w http.ResponseWriter, r *http.Request) {
 		//fmt.Println(p)
 		conf := utils.ReadConfig()
 		p = p + "<b>Dashboard URL : </b>" + conf.DashboardURL
-		utils.SendMail(p, subject, cc)
+		//	utils.SendMail(p, subject, cc)
 		//fmt.Println(p)
 		utils.RespondWithJSON("Email Sent Successfully", w, r)
 	}

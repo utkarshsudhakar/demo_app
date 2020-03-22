@@ -14,6 +14,7 @@ RUN go get -d -v ./...
 
 RUN go install -v ./...
 
+CMD ["go run main.go"]
 # Copy go mod and sum files
 #COPY go.mod go.sum ./
 
