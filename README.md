@@ -19,7 +19,7 @@ kubectl(version > 1.16) with path configured
 ```
 minikube (version >1.17)
 ```
-### Installing
+### Deployment/Installing
 
 A step by step series of examples that tells  how to get the app running
 
