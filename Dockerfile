@@ -2,35 +2,31 @@
 FROM golang:latest
 
 # Add Maintainer Info
+
 LABEL maintainer="Utkarsh Sudhakar <sudhakar.utkarsh9@gmail.com>"
 
-RUN git clone https://github.com/utkarshsudhakar/demo_app.git /demo_app
 # Set the Current Working Directory inside the container
+
 WORKDIR $GOPATH/src/github.com/utkarshsudhakar/demo_app/
+
+# Copy the source from the current directory to the Working Directory inside the container
 
 COPY . .
 
+# Get all the dependencies
 RUN go get -d -v ./...
 
+#Install all the dependencies
 RUN go install -v ./...
 
-CMD ["go run main.go"]
-# Copy go mod and sum files
-#COPY go.mod go.sum ./
+#build the app
+RUN go build -o demo_app .
 
-# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
-#RUN go mod download
-
-
-
-# Copy the source from the current directory to the Working Directory inside the container
-#COPY . .
-
-# Build the Go app
-#RUN go build -o main .
-
-# Expose port 8080 to the outside world
+# Expose port 4047 to the outside environment
 EXPOSE 4047
 
-# Command to run the executable
-#CMD ["./main"]
+#cmd to run app
+
+CMD ["./demo_app"]
+
+
