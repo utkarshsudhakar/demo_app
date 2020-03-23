@@ -47,8 +47,8 @@ Step 6 - To make sure demo app is running , use the following test url -
 ```
 <minikube-ip>:<nodePort>/test
 ```
-  where 'minikube-ip' can be obtained by using cmd- "minikube ip"
-  and 'nodeport>' can be obtained by using cmd- "kubectl get service demo" 
+  where '<minikube-ip>' can be obtained by using cmd- "minikube ip"
+  and '<nodeport>' can be obtained by using cmd- "kubectl get service demo" 
 
 
 ## Example
