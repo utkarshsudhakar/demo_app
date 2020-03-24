@@ -62,3 +62,18 @@ The result should be this if app is running successfully -
 ```
 {"ResponseCode":200,"Message":"OK"}
 ```
+
+## Performance Testing
+
+To Perform the Performance test on the service -
+```
+cd PerformanceScript
+```
+Open the demo_app.jmx script in Jmeter and change the value of Host and Port in User Defined Variables to where service is running and accordingly change the number of threads and other parameters in Thread Group Controller.
+
+Run the Script through jmeter UI or in non-gui mode with below cmd -
+
+```
+cd <jmeter bin path>
+sh jmeter.sh -n -t <path to demo_app>/PerformanceScript/demo_app.jmx -l <path to output folder>/result.jtl
+```
